@@ -1,7 +1,9 @@
 using Asp.Versioning;
 using Common.DB.Extension;
+using FluentValidation;
 using Microsoft.Extensions.Options;
 using RestAPI.FluentValidation.API.Config;
+using RestAPI.FluentValidation.API.Validators;
 using RestAPI.FluentValidation.Interfaces.Repository;
 using RestAPI.FluentValidation.Interfaces.Service;
 using RestAPI.FluentValidation.Services.AutoMapper;
@@ -55,6 +57,9 @@ builder.Services.AddAutoMapper ( typeof ( InventoryProfile ) );
 
 // Add Db Context
 builder.Services.AddDatabase<InventoryDBContext> ();
+
+// Add Validators
+builder.Services.AddValidatorsFromAssemblyContaining<ItemValidator> ();
 
 var app = builder.Build ();
 
